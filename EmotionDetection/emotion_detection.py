@@ -12,6 +12,11 @@ def emotion_detector(text_to_analyze):
     
     # Convertir la respuesta JSON en un diccionario de Python
     data_text = json.loads(response.text)
+
+    if response.status_code == 400:
+        emotion_scores =  {'anger':None,'disgust':None,'fear':None,'joy':None,'sadness':None,'dominant_emotion':None}
+        return emotion_scores
+
     data = data_text['emotionPredictions'][0]
 
     # Extraer los valores de las emociones
